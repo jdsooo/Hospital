@@ -1,4 +1,4 @@
-package PersonalMedico;
+package view;
 
 public class Enfermera {
 }
