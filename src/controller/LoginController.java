@@ -1,9 +1,7 @@
 package controller;
-
 import backEnde.BackEnde;
 import model.Doctor;
 import view.LoginView;
-
 public class LoginController {
     private LoginView loginView;
     public LoginController(LoginView loginView) {

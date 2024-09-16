@@ -1,7 +1,6 @@
 package view;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class LoginView extends JFrame {
     private JTextField emailField;
