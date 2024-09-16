@@ -1,7 +1,7 @@
 package backEnde;
 
-import data.DataDoctor;
 import model.Doctor;
+import data.DataDoctor;
 
 public class BackEnde {
     private DataDoctor dataDoctor;

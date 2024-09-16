@@ -1,8 +1,8 @@
 package data;
 
-import model.Doctor;
 import java.util.ArrayList;
 import java.util.HashMap;
+import model.Doctor;
 
 public class DataDoctor {
     private HashMap<String, Doctor> data;
