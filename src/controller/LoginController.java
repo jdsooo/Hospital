@@ -16,8 +16,8 @@ public class LoginController {
     }
 
     public void controllerLogin() {
-        String email = loginView.getEmailField().getText().trim().toLowerCase(); // Normalizar el email
-        String password = new String(loginView.getPasswordField().getPassword()).trim(); // Normalizar la contraseña
+        String email = loginView.getEmailField().getText().trim().toLowerCase();
+        String password = new String(loginView.getPasswordField().getPassword()).trim();
 
         BackEnde backEnde = new BackEnde();
         Doctor doctor = backEnde.validarDatos(email, password);
