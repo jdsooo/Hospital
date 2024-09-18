@@ -28,8 +28,6 @@ public class Doctor {
         return email;
     }
 
-
-
     public String getSpecialty() {
         return specialty;
     }
