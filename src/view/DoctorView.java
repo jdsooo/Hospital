@@ -3,11 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 public class DoctorView {
 
-    private int[] pantally = {1300, 800};
+    private int[] pantalla = {1300, 800};
     public DoctorView() {
         JFrame frame = new JFrame("Perfil del doctor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(pantally[0], pantally[1]);
+        frame.setSize(pantalla[0], pantalla[1]);
         frame.setLayout(new BorderLayout());
 
         agregarBarraSuperior(frame);
