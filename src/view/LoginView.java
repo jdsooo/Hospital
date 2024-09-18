@@ -1,63 +1,61 @@
-import javax.swing.*;
+package view;
 import java.awt.*;
+import javax.swing.*;
 
 public class LoginView extends JFrame {
+    private JTextField emailField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+
     public LoginView() {
-        setTitle("Rockema");
-        setSize(800, 600);
+        setTitle("Login");
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        panel.setBackground(Color.green);
-
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setBackground(Color.white);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.WEST;
 
-        JLabel emailLabel = new JLabel("Usuario:");
+        gbc.gridy = 0;
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        panel.add(emailLabel, gbc);
+        JLabel emailLabel = new JLabel("Correo:");
+        formPanel.add(emailLabel, gbc);
 
-        JTextField emailField = new JTextField(20);
         gbc.gridx = 1;
-        gbc.gridy = 0;
-        panel.add(emailField, gbc);
+        emailField = new JTextField(20);
+        formPanel.add(emailField, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         JLabel passwordLabel = new JLabel("Contraseña:");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        panel.add(passwordLabel, gbc);
+        formPanel.add(passwordLabel, gbc);
 
-        JPasswordField passwordField = new JPasswordField(20);
         gbc.gridx = 1;
-        gbc.gridy = 1;
-        panel.add(passwordField, gbc);
+        passwordField = new JPasswordField(20);
+        formPanel.add(passwordField, gbc);
 
-        JButton loginButton = new JButton("Login");
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.LINE_END;
-        panel.add(loginButton, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
+        loginButton = new JButton("Iniciar Sesión");
+        formPanel.add(loginButton, gbc);
 
-        loginButton.addActionListener(e -> {
-            String usuario = emailField.getText();
-            char[] contrasena = passwordField.getPassword();
-            System.out.println("Usuario: " + usuario);
-            System.out.println("Contraseña: " + new String(contrasena));
-        });
-
-        add(panel, BorderLayout.CENTER);
-
-        // Hacer visible la ventana
-        setVisible(true);
+        add(formPanel, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        new LoginView();
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JTextField getEmailField() {
+        return emailField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
     }
 }
