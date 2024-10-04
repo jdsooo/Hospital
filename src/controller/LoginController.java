@@ -1,34 +1,42 @@
 package controller;
+
 import backEnde.BackEnde;
-import model.Doctor;
+import data.databasepaciente;
+import view.DoctorView;
 import view.LoginView;
+
+import java.util.HashMap;
+
 public class LoginController {
-    private LoginView loginView;
-    public LoginController(LoginView loginView) {
-        this.loginView = loginView;
+    private LoginView loginview;
+    private BackEnde backEnde;
+    private databasepaciente pacienteDB;
+
+    public LoginController(LoginView loginview,BackEnde backEnde) {
+        this.loginview=loginview;
+        this.backEnde=backEnde;
+        this.pacienteDB = new databasepaciente();
         initController();
     }
 
     public void initController() {
-        loginView.getLoginButton().addActionListener(e -> controllerLogin());
+        loginview.getLoginButton().addActionListener(e -> iniciarsesion());
     }
 
-    public void controllerLogin() {
-        String email = loginView.getEmailField().getText().trim().toLowerCase(); // Normalizar el email
-        String password = new String(loginView.getPasswordField().getPassword()).trim(); // Normalizar la contraseña
+    public void iniciarsesion() {
+        String usuario = loginview.getEmailField().getText();
+        String contraseña = new String(loginview.getPasswordField().getPassword());
 
-        BackEnde backEnde = new BackEnde();
-        Doctor doctor = backEnde.validarDatos(email, password);
+        HashMap<String, String> resultado = backEnde.validacion(usuario, contraseña);
 
-        if (doctor != null) {
-            System.out.println("Inicio exitoso");
-            System.out.println("Nombre: " + doctor.getName() + " " + doctor.getLastName());
-            System.out.println("Correo: " + doctor.getEmail());
-            System.out.println("Especialidad: " + doctor.getSpecialty());
-            System.out.println("Usuario: " + doctor.getUser());
-        } else {
-            System.out.println("Usuario o contraseña incorrectos");
+
+        if (!resultado.isEmpty()) {
+            String nombreDoctor = resultado.get("nombre");
+            String especialidad = resultado.get("especialidad");
+
+            // Crear y mostrar la vista del doctor
+            DoctorView doctorView = new DoctorView(nombreDoctor, especialidad, pacienteDB);
+            doctorView.setVisible(true);
         }
     }
 }
-

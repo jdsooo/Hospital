@@ -1,6 +1,10 @@
 package backEnde;
 import data.DataDoctor;
+import data.datadoc;
 import model.Doctor;
+
+import java.util.HashMap;
+
 public class BackEnde {
     private DataDoctor dataDoctor;
 
@@ -8,13 +12,14 @@ public class BackEnde {
         dataDoctor = new DataDoctor();
     }
 
-    public Doctor validarDatos(String email, String password) {
-        Doctor doctor = dataDoctor.getDoctores().get(email);
+  public HashMap<String,String>validacion(String email,String contraseña) {
+      HashMap<String, String> resultado = new HashMap<>();
 
-        if (doctor != null && doctor.getPassword().equals(password)) {
-            return doctor;
-        }
-
-        return null;
-    }
-}
+      for (datadoc doctor : dataDoctor.getDoctors()) {
+          if (doctor.getEmail().equals(email) && doctor.getPassword().equals(contraseña)) {
+              resultado.put("nombre", doctor.getNombre());
+              resultado.put("especialida", doctor.getEspecialidad());
+          }
+      }
+return resultado;
+  }}
